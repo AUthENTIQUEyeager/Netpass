@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Site {
+  id         String     @id @default(uuid())
+  nom        String
+  ville      String
+  actif      Boolean    @default(true)
+  created_at DateTime   @default(now())
+  vouchers   Voucher[]
+  commandes  Commande[]
+
+  @@map("sites")
+}
+
+model Forfait {
+  id           String     @id @default(uuid())
+  nom          String
+  prix         Int
+  duree_heures Int
+  vitesse      String
+  description  String?
+  wave_link    String?
+  actif        Boolean    @default(true)
+  created_at   DateTime   @default(now())
+  vouchers     Voucher[]
+  commandes    Commande[]
+
+  @@map("forfaits")
+}
+
+model Voucher {
+  id         String   @id @default(uuid())
+  site_id    String
+  forfait_id String
+  username   String
+  password   String
+  statut     String   @default("disponible")
+  created_at DateTime @default(now())
+  site       Site     @relation(fields: [site_id], references: [id])
+  forfait    Forfait  @relation(fields: [forfait_id], references: [id])
+  ticket     Ticket?
+
+  @@map("vouchers")
+}
+
+model Commande {
+  id         String   @id @default(uuid())
+  forfait_id String
+  site_id    String
+  client_tel String?
+  statut     String   @default("en_attente")
+  montant    Int
+  created_at DateTime @default(now())
+  forfait    Forfait  @relation(fields: [forfait_id], references: [id])
+  site       Site     @relation(fields: [site_id], references: [id])
+  ticket     Ticket?
+
+  @@map("commandes")
+}
+
+model Ticket {
+  id               String   @id @default(uuid())
+  commande_id      String   @unique
+  voucher_id       String   @unique
+  date_assignation DateTime @default(now())
+  date_expiration  DateTime
+  commande         Commande @relation(fields: [commande_id], references: [id])
+  voucher          Voucher  @relation(fields: [voucher_id], references: [id])
+
+  @@map("tickets")
+}
+
+model Admin {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  password   String
+  nom        String
+  created_at DateTime @default(now())
+
+  @@map("admins")
+}
