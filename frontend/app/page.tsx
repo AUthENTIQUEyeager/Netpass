@@ -35,6 +35,7 @@ export default function Home() {
         <h1 style={{ fontSize: 'clamp(36px, 6vw, 64px)', lineHeight: 1.1, marginBottom: 20, maxWidth: 700 }}>
           Internet WiFi<br />
           <span style={{ color: 'var(--accent2)' }}>sans abonnement</span>
+           <span style={{ color: 'var(--accent2)' }}>Chez Toufé</span>
         </h1>
 
         <p style={{ color: 'var(--text2)', fontSize: 16, maxWidth: 480, lineHeight: 1.6, marginBottom: 36 }}>
