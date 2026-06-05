@@ -12,7 +12,7 @@ export default function Home() {
           <div style={{ width: 30, height: 30, background: 'var(--accent)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Wifi size={16} color="white" />
           </div>
-          <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: 16 }}>WifiPass</span>
+          <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: 16 }}>TouféWifi</span>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <Link href="/mon-ticket" style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 8, border: '1px solid var(--border)', color: 'var(--text2)', fontSize: 13, textDecoration: 'none', transition: 'all 0.2s' }}>
@@ -67,7 +67,7 @@ export default function Home() {
       </div>
 
       <footer style={{ borderTop: '1px solid var(--border)', padding: '16px 24px', textAlign: 'center', color: 'var(--text3)', fontSize: 12 }}>
-        © {new Date().getFullYear()} WifiPass — Tous droits réservés
+        © {new Date().getFullYear()} TouféWifi — Tous droits réservés
       </footer>
     </div>
   );
